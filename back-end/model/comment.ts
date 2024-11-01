@@ -22,4 +22,11 @@ export class Comment {
     getText() {
         return this.text;
     }
+
+    equals(comment: Comment):boolean {
+        return (
+        this.commentId === comment.getCommentId() &&
+        this.text === comment.getText()
+    );
+}
 }

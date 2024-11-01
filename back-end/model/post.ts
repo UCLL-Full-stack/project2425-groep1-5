@@ -37,4 +37,13 @@ export class Post {
     getFavorites() {
         return this.favorites;
     }
+
+    equals(post: Post):boolean {
+        return (
+        this.postId === post.getPostId() &&
+        this.title === post.getTitle() &&
+        this.pathToFile === post.getPathToFile() &&
+        this.favorites === post.getFavorites()
+    );
+}
 }

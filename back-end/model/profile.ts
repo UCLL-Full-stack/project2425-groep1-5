@@ -51,4 +51,15 @@ export class Profile {
         return this.fontSize
     }
 
+    equals(profile: Profile):boolean {
+        return (
+        this.profileId === profile.getProfileId() &&
+        this.email === profile.getEmail() &&
+        this.displayName === profile.getDisplayName() &&
+        this.theme === profile.getTheme() &&
+        this.creationDate === profile.getCreationDate() &&
+        this.fontSize === profile.getFontSize()
+    );
+}
+
 }

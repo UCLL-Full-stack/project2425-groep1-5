@@ -30,4 +30,13 @@ export class Tag {
     getDescription() {
         return this.description;
     }
+
+
+    equals(tag: Tag):boolean {
+        return (
+        this.tagId === tag.getTagId() &&
+        this.title === tag.getTitle() &&
+        this.description === tag.getDescription()
+    );
+}
 }
