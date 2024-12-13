@@ -7,16 +7,8 @@ export class Profile {
     readonly fontSize: number;
 
 
-    constructor(profile: {
-        profileId?: number;
-        email: string;
-        displayName: string;
-        theme : string;
-        creationDate: Date;
-        fontSize: number;
-
-    } ) {
-
+    constructor(profile: {profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number;} ) {
+        this.validate(profile)
         this.profileId = profile.profileId
         this.email = profile.email
         this.displayName = profile.displayName
@@ -24,8 +16,35 @@ export class Profile {
         this.creationDate = profile.creationDate;
         this.fontSize = profile.fontSize;
 
+        // this.validate();
 
-}
+
+    }
+
+    validate(profile: {profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number;}){
+
+
+        if(!profile.email.includes('@')){
+            throw new Error("Email must include @")
+        }
+        if (profile.displayName.length < 3) {
+            throw new Error("Displayname must have a minimum of 3 characters.");
+        }
+        if (!profile.displayName || profile.displayName.length === 0) {
+            throw new Error("Displayname is required.");
+        }
+
+        const validThemes = ['light', 'dark'];
+        if(!validThemes.includes(profile.theme)){
+            throw new Error;
+        }
+        if (profile.fontSize < 10 || profile.fontSize > 30) {
+            throw new Error("Font size must be between 10 and 30");
+        }
+        if (!(profile.creationDate instanceof Date) || isNaN(profile.creationDate.getTime())) {
+            throw new Error("Valid creation date is required");
+        }
+    }
 
     getProfileId() {
         return this.profileId;

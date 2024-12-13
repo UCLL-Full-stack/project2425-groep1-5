@@ -4,14 +4,9 @@ export class Tag {
     readonly description: string;
 
 
-    constructor(tag: {
-        tagId?: number;
-        title: string;
-        description: string;
-        
+    constructor(tag: {tagId?: number; title: string; description: string;} ) {
 
-    } ) {
-
+        this.validate(tag)
         this.tagId = tag.tagId
         this.title = tag.title
         this.description = tag.description
@@ -19,6 +14,23 @@ export class Tag {
         
     }
 
+    validate(tag: {tagId?: number; title: string; description: string;}){
+        if (!tag.title || tag.title.length ===0) {
+            throw new Error("Title is required");
+
+        }
+        if (tag.title.length < 3) {
+            throw new Error ("Title must be at least 3 characters long");
+        }
+        if (!tag.description || tag.description.length === 0) {
+            throw new Error("Description is required");
+        }
+        if (tag.description.length < 10) {
+            throw new Error("Description must be at least 10 characters long")
+        }
+        
+
+    }
     getTagId() {
         return this.tagId;
     }

@@ -24,3 +24,5 @@ const profiles = [
 const getAllProfiles = (): Profile[] => {
     return profiles;
 };
+
+export default {getAllProfiles}
