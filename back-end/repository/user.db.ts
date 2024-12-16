@@ -36,6 +36,11 @@ const users = [
 
 const getAllUsers = (): User[] => users;
 
+const createUser = async (user: User): Promise<User> => {
+    users.push(user);
+    return user;
+}
+
 const getUserById = ({ id }: { id: number }): User | null => {
     return users.find((user) => user.getUserId() === id) || null;
 };
@@ -43,4 +48,5 @@ const getUserById = ({ id }: { id: number }): User | null => {
 export default {
     getAllUsers,
     getUserById,
+    createUser,
 };

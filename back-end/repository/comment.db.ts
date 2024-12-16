@@ -18,11 +18,17 @@ const comments: Comment[] = [
 
 const getAllComments = (): Comment[] => comments;
 
+const addComment = (comment: Comment): Promise<Comment> => {
+    comments.push(comment);
+    return Promise.resolve(comment);
+}
+
 // const getCommentById = (id: number): Comment | null => {
 //     return comments.find((comment) => comment.getCommentId() === id) || null;
 // };
 
 export default {
-    getAllComments
+    getAllComments,
+    addComment
     // getCommentById,
 };

@@ -20,9 +20,15 @@ const profiles = [
     }),
 ];
 
+const createProfile = async (profile: Profile): Promise<Profile> => {
+
+    profiles.push(profile);
+    return profile;
+};
+
 
 const getAllProfiles = (): Profile[] => {
     return profiles;
 };
 
-export default {getAllProfiles}
+export default {getAllProfiles, createProfile}

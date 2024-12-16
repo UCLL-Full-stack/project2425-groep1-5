@@ -17,7 +17,13 @@ const getAllTags = (): Tag[] => {
     return tags;
 };
 
+const addTag = async (tag: Tag): Promise<Tag> => {
+    tags.push(tag);
+    return tag;
+}
+
 
 export default {
-    getAllTags
+    getAllTags,
+    addTag
 };
