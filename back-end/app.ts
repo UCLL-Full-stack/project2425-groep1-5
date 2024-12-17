@@ -8,6 +8,8 @@ import swaggerUi from 'swagger-ui-express';
 import { commentRouter } from './controller/comment.routes';
 import { postRouter } from './controller/post.routes';
 import { tagRouter } from './controller/tag.routes';
+import {profileRouter} from "./controller/profile.routes";
+import {userRouter} from "./controller/user.routes";
 
 const app = express();
 dotenv.config();
@@ -31,10 +33,11 @@ const swaggerOpts = {
     apis: ['./controller/*.routes.ts']
 };
 
-app.use('/teams',teamRouter);
-app.use('/seasons',seasonRouter);
-app.use('/drivers',driverRouter);
-app.use('/races', raceRouter)
+app.use('/comment', commentRouter);
+app.use('/post', postRouter);
+app.use('/profile', profileRouter);
+app.use('/tag', tagRouter);
+app.use('/user', userRouter);
 
 app.listen(port || 3000, () => {
     console.log(`Back-end is running on port ${port}.`);
