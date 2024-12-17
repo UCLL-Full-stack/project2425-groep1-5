@@ -18,6 +18,9 @@ const port = process.env.APP_PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+
+
+
 app.get('/status', (req, res) => {
     res.json({ message: 'Back-end is running...' });
 });
@@ -30,14 +33,18 @@ const swaggerOpts = {
             version: "1.0.0",
         },
     },
-    apis: ['./controller/*.routes.ts']
+    apis: ['./controller/*.routes.ts', './model/*.ts']
 };
 
-app.use('/comment', commentRouter);
-app.use('/post', postRouter);
-app.use('/profile', profileRouter);
-app.use('/tag', tagRouter);
-app.use('/user', userRouter);
+const swaggerSpec = swaggerJSDoc(swaggerOpts);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
+app.use('/comments', commentRouter);
+app.use('/posts', postRouter);
+app.use('/profiles', profileRouter);
+app.use('/tags', tagRouter);
+app.use('/users', userRouter);
 
 app.listen(port || 3000, () => {
     console.log(`Back-end is running on port ${port}.`);
