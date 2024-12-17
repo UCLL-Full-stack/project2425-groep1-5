@@ -13,4 +13,4 @@ postRouter.get('/', async(req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-export {postRouter}
+export { postRouter }

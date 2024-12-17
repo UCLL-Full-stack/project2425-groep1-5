@@ -13,4 +13,4 @@ tagRouter.get('/', async(req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-export {tagRouter}
+export { tagRouter }
