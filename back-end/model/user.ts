@@ -1,27 +1,40 @@
 import { Profile } from './profile';
+import { Post } from './post';
+import { User as UserPrisma } from '@prisma/client';
+import { Profile as ProfilePrisma } from '@prisma/client';
+import { Post as PostPrisma } from '@prisma/client';
+import { Comment as CommentPrisma } from "@prisma/client";
+import { Tag as TagPrisma } from "@prisma/client";
 
 export class User {
-    readonly userId?: number;
-    readonly password : string;
-    readonly userName : string;
-    readonly profile: Profile;
-    // readonly profile?: Profile;
+    private id?: number;
+    private password: string;
+    private username: string;
+    private profile: Profile;
+    private posts: Post[];
 
-    constructor(user: { userId?: number; password: string; userName: string; profile: Profile; }) {
-        // this.validate(user);
+    constructor(user: {
+        id: number;
+        password: string;
+        username: string;
+        profile: Profile;
+        posts: Post[];
+    }) {
         this.validate(user);
-        this.userId = user.userId
-        this.password = user.password
-        this.userName = user.userName
-        this.profile = user.profile
-    }
 
-    validate(user: { userId?: number; password: string; userName: string; profile: Profile; }) {
+        this.id = user.id;
+        this.password = user.password;
+        this.username = user.username;
+        this.profile = user.profile;
+        this.posts = user.posts;
+    };
+
+    validate(user: { id: number; password: string; username: string; profile: Profile }) {
         if (!user.password || user.password.length < 6) {
             throw new Error ("Password is required and must be at least 6 characters long")
         }
 
-        if (!user.userName || user.userName.length === 0) {
+        if (!user.username || user.username.length === 0) {
             throw new Error("Username is required");
         }
 
@@ -30,8 +43,8 @@ export class User {
         }
     }
 
-    getUserId() {
-        return this.userId;
+    getId() {
+        return this.id;
     }
 
     getPassword() {
@@ -39,19 +52,43 @@ export class User {
     }
 
     getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     getProfile() {
         return this.profile;
     }
 
+    getPosts() {
+        return this.posts;
+    }
+
     equals(user: User): boolean {
         return (
-            this.userId === user.getUserId() &&
+            this.id === user.getId() &&
             this.password === user.getPassword() &&
-            this.userName === user.getUsername() &&
-            this.profile === user.getProfile()
+            this.username === user.getUsername() &&
+            this.profile === user.getProfile() &&
+            this.posts === user.getPosts()
         );
     }
+
+    static from({
+                    id,
+                    password,
+                    username,
+                    profile,
+                    posts
+    }: UserPrisma & {
+        profile: ProfilePrisma,
+        posts: (PostPrisma & { comments: CommentPrisma[], tags: TagPrisma[]})[]
+    }) {
+        return new User({
+            id,
+            password,
+            username,
+            profile: Profile.from(profile),
+            posts: posts.map((post) => Post.from(post)),
+        });
+    };
 }

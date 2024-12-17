@@ -1,22 +1,30 @@
+import { Profile as ProfilePrisma } from '@prisma/client';
+
 export class Profile {
-    readonly profileId?: number;
+    readonly id?: number;
     readonly email : string;
     readonly displayName : string;
     readonly theme: string;
     readonly creationDate: Date;
     readonly fontSize: number;
 
-    constructor(profile: { profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number; }) {
+    constructor(profile: {
+        id?: number;
+        email: string;
+        displayName: string;
+        theme : string;
+        creationDate: Date;
+        fontSize: number;
+    }) {
         this.validate(profile)
-        this.profileId = profile.profileId
+
+        this.id = profile.id
         this.email = profile.email
         this.displayName = profile.displayName
         this.theme = profile.theme
         this.creationDate = profile.creationDate;
         this.fontSize = profile.fontSize;
-
-        // this.validate();
-    }
+    };
 
     validate(profile: { profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number; }) {
         if(!profile.email.includes('@')){
@@ -42,8 +50,8 @@ export class Profile {
         }
     }
 
-    getProfileId() {
-        return this.profileId;
+    getId() {
+        return this.id;
     }
 
     getEmail() {
@@ -68,12 +76,23 @@ export class Profile {
 
     equals(profile: Profile): boolean {
         return (
-            this.profileId === profile.getProfileId() &&
+            this.id === profile.getId() &&
             this.email === profile.getEmail() &&
             this.displayName === profile.getDisplayName() &&
             this.theme === profile.getTheme() &&
             this.creationDate === profile.getCreationDate() &&
             this.fontSize === profile.getFontSize()
         );
+    };
+
+    static from({ id, email, displayName, theme, creationDate, fontSize }: ProfilePrisma ) {
+        return new Profile({
+            id,
+            email,
+            displayName,
+            theme,
+            creationDate,
+            fontSize,
+        })
     }
 }

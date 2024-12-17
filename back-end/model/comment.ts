@@ -1,14 +1,23 @@
-export class Comment {
-    readonly commentId? : number;
-    readonly text : string;
+import { Comment as CommentPrisma } from '@prisma/client';
 
-    constructor(comment: { commentId? : number; text : string; }) {
+export class Comment {
+    private id?: number;
+    private text: string;
+    private postId?: number;
+
+    constructor(comment: {
+        id?: number;
+        text: string;
+        postId?: number;
+    }) {
         this.validate(comment);
-        this.commentId = comment.commentId
+
+        this.id = comment.id
         this.text = comment.text
+        this.postId = comment.postId
     }
 
-    validate(comment: { commentId?: number; text: string; }) {
+    validate(comment: { id?: number; text: string; }) {
         if (!comment.text || comment.text.length === 0) {
             throw new Error("Text is required");
         }
@@ -18,18 +27,31 @@ export class Comment {
         }
     }
 
-    getCommentId() {
-        return this.commentId;
+    getId() {
+        return this.id;
     }
 
     getText() {
         return this.text;
     }
 
+    getPostId() {
+        return this.postId;
+    }
+
     equals(comment: Comment): boolean {
         return (
-            this.commentId === comment.getCommentId() &&
-            this.text === comment.getText()
+            this.id === comment.getId() &&
+            this.text === comment.getText() &&
+            this.postId === comment.getPostId()
         );
+    }
+
+    static from({ id, text, postId }: CommentPrisma ) {
+        return new Comment({
+            id,
+            text,
+            postId,
+        })
     }
 }

@@ -1,14 +1,21 @@
-export class Tag {
-    readonly tagId?: number;
-    readonly title: string;
-    readonly description: string;
+import { Tag as TagPrisma } from '@prisma/client';
 
-    constructor(tag: { tagId?: number; title: string; description: string; }) {
+export class Tag {
+    private id?: number;
+    private title: string;
+    private description: string;
+
+    constructor(tag: {
+        id?: number;
+        title: string;
+        description: string;
+    }) {
         this.validate(tag)
-        this.tagId = tag.tagId
-        this.title = tag.title
-        this.description = tag.description
-    }
+
+        this.id = tag.id;
+        this.title = tag.title;
+        this.description = tag.description;
+    };
 
     validate(tag: { tagId?: number; title: string; description: string; }) {
         if (!tag.title || tag.title.length ===0) {
@@ -28,8 +35,8 @@ export class Tag {
         }
     }
 
-    getTagId() {
-        return this.tagId;
+    getId() {
+        return this.id;
     }
 
     getTitle() {
@@ -42,9 +49,17 @@ export class Tag {
 
     equals(tag: Tag): boolean {
         return (
-            this.tagId === tag.getTagId() &&
+            this.id === tag.getId() &&
             this.title === tag.getTitle() &&
             this.description === tag.getDescription()
         );
     }
+
+    static from({ id, title, description }: TagPrisma) {
+        return new Tag({
+            id,
+            title,
+            description,
+        });
+    };
 }
