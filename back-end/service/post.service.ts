@@ -2,11 +2,9 @@ import postDb from "../repository/post.db";
 import { Post } from '../model/post';
 import { PostInput } from '../types';
 
-
-
 const getAllPosts = (): Post[] => {
     return postDb.getAllPosts();
-}
+};
 
 const addPost = (postInput: PostInput): Post => {
     if (!postInput.title) {
@@ -14,9 +12,9 @@ const addPost = (postInput: PostInput): Post => {
     }
 
     return postDb.addPost(postInput as { postId: number; title: string; pathToFile: string; favorites: number });
-}
+};
 
-export default { getAllPosts,addPost };
+export default { getAllPosts, addPost };
 
 // const addPost = ({ postId, title, pathToFile, favorites }: PostInput, role: string): Post => {
 //     if (role !== 'admin') {

@@ -2,7 +2,6 @@ import profileDb from "../repository/profile.db";
 import { Profile } from '../model/profile';
 import { ProfileInput } from "../types";
 
-
 const createProfile =  ({ profileId, email, displayName, theme, creationDate, fontSize}: ProfileInput, role: string): Promise<Profile> => {
     if (role !== 'admin') {
         throw new Error('You are not authorized to create a profile');
@@ -21,14 +20,12 @@ const createProfile =  ({ profileId, email, displayName, theme, creationDate, fo
 //     return profileDb.createProfile(profile);
 // };
 
-
 const getAllProfiles = (): Profile[] => {
     const profiles = profileDb.getAllProfiles();
     if (!profiles || profiles.length === 0) {
         throw new Error("No profiles found");
     }
     return profiles;
-}
-
+};
 
 export default { getAllProfiles, createProfile };

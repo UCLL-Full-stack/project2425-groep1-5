@@ -5,14 +5,9 @@ import { UserInput } from "../types";
 import { Profile } from '../model/profile';
 import { ProfileInput } from "../types";
 
-
-
-
-
 const getAllUsers = (): User[] => {
     return userDb.getAllUsers();
-}
-
+};
 
 const createUser = async ({ userId, password, userName, profile }: UserInput, role: string): Promise<User> => {
     if (role !== 'admin') {
@@ -31,7 +26,6 @@ const createUser = async ({ userId, password, userName, profile }: UserInput, ro
         throw new Error('Profile is required');
     }
 
-    
     const validProfile = new Profile({
         profileId: profile.profileId,
         email: profile.email ?? '',
@@ -41,7 +35,6 @@ const createUser = async ({ userId, password, userName, profile }: UserInput, ro
         fontSize: profile.fontSize ?? 14,
     });
 
-   
     const user = new User({
         userId,
         password,
