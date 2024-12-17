@@ -6,8 +6,7 @@ export class Profile {
     readonly creationDate: Date;
     readonly fontSize: number;
 
-
-    constructor(profile: {profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number;} ) {
+    constructor(profile: { profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number; }) {
         this.validate(profile)
         this.profileId = profile.profileId
         this.email = profile.email
@@ -17,13 +16,9 @@ export class Profile {
         this.fontSize = profile.fontSize;
 
         // this.validate();
-
-
     }
 
-    validate(profile: {profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number;}){
-
-
+    validate(profile: { profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number; }) {
         if(!profile.email.includes('@')){
             throw new Error("Email must include @")
         }
@@ -35,6 +30,7 @@ export class Profile {
         }
 
         const validThemes = ['light', 'dark'];
+
         if(!validThemes.includes(profile.theme)){
             throw new Error;
         }
@@ -70,15 +66,14 @@ export class Profile {
         return this.fontSize
     }
 
-    equals(profile: Profile):boolean {
+    equals(profile: Profile): boolean {
         return (
-        this.profileId === profile.getProfileId() &&
-        this.email === profile.getEmail() &&
-        this.displayName === profile.getDisplayName() &&
-        this.theme === profile.getTheme() &&
-        this.creationDate === profile.getCreationDate() &&
-        this.fontSize === profile.getFontSize()
-    );
-}
-
+            this.profileId === profile.getProfileId() &&
+            this.email === profile.getEmail() &&
+            this.displayName === profile.getDisplayName() &&
+            this.theme === profile.getTheme() &&
+            this.creationDate === profile.getCreationDate() &&
+            this.fontSize === profile.getFontSize()
+        );
+    }
 }

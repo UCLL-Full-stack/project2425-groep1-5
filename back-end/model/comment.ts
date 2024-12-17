@@ -2,13 +2,10 @@ export class Comment {
     readonly commentId? : number;
     readonly text : string;
 
-
-
-    constructor(comment: {commentId? : number; text : string;} ) {
+    constructor(comment: { commentId? : number; text : string; }) {
         this.validate(comment);
         this.commentId = comment.commentId
         this.text = comment.text
-        
     }
 
     validate(comment: { commentId?: number; text: string; }) {
@@ -29,10 +26,10 @@ export class Comment {
         return this.text;
     }
 
-    equals(comment: Comment):boolean {
+    equals(comment: Comment): boolean {
         return (
-        this.commentId === comment.getCommentId() &&
-        this.text === comment.getText()
-    );
-}
+            this.commentId === comment.getCommentId() &&
+            this.text === comment.getText()
+        );
+    }
 }

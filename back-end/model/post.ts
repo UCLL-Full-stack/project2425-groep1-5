@@ -4,15 +4,12 @@ export class Post {
     readonly pathToFile: string;
     readonly favorites: number;
 
-
-
-    constructor(post: {postId?: number; title: string; pathToFile: string; favorites: number;} ){
+    constructor(post: { postId?: number; title: string; pathToFile: string; favorites: number; }) {
         this.validate(post);
         this.postId = post.postId
         this.title = post.title
         this.pathToFile = post.pathToFile
         this.favorites = post.favorites
-        
     }
 
     validate(post: { postId?: number; title: string; pathToFile: string; favorites: number; }) {
@@ -46,12 +43,12 @@ export class Post {
         return this.favorites;
     }
 
-    equals(post: Post):boolean {
+    equals(post: Post): boolean {
         return (
-        this.postId === post.getPostId() &&
-        this.title === post.getTitle() &&
-        this.pathToFile === post.getPathToFile() &&
-        this.favorites === post.getFavorites()
-    );
-}
+            this.postId === post.getPostId() &&
+            this.title === post.getTitle() &&
+            this.pathToFile === post.getPathToFile() &&
+            this.favorites === post.getFavorites()
+        );
+    }
 }
