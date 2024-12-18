@@ -16,17 +16,18 @@ export class Profile {
         creationDate: Date;
         fontSize: number;
     }) {
+        const parsedCreationDate = typeof profile.creationDate === 'string' ? new Date(profile.creationDate) : profile.creationDate;
         this.validate(profile)
 
         this.id = profile.id
         this.email = profile.email
         this.displayName = profile.displayName
         this.theme = profile.theme
-        this.creationDate = profile.creationDate;
+        this.creationDate = parsedCreationDate;
         this.fontSize = profile.fontSize;
     };
 
-    validate(profile: { profileId?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number; }) {
+    validate(profile: { id?: number; email: string; displayName: string; theme : string; creationDate: Date; fontSize: number; }) {
         if(!profile.email.includes('@')){
             throw new Error("Email must include @")
         }

@@ -2,10 +2,7 @@ import profileDb from "../repository/profile.db";
 import { Profile } from '../model/profile';
 import { ProfileInput } from "../types";
 
-const createProfile =  ({ profileId, email, displayName, theme, creationDate, fontSize}: ProfileInput, role: string): Promise<Profile> => {
-    if (role !== 'admin') {
-        throw new Error('You are not authorized to create a profile');
-    }
+const createProfile =  ({ profileId, email, displayName, theme, creationDate, fontSize}: ProfileInput): Promise<Profile> => {
 
     if (!email) {
         throw new Error('Email is required');

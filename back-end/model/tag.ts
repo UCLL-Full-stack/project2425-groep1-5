@@ -30,8 +30,8 @@ export class Tag {
             throw new Error("Description is required");
         }
 
-        if (tag.description.length < 10) {
-            throw new Error("Description must be at least 10 characters long")
+        if (tag.description.length < 3) {
+            throw new Error("Description must be at least 3 characters long")
         }
     }
 
