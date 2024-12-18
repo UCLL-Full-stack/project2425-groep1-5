@@ -17,7 +17,7 @@ export class Tag {
         this.description = tag.description;
     };
 
-    validate(tag: { tagId?: number; title: string; description: string; }) {
+    validate(tag: { id?: number; title: string; description: string; }) {
         if (!tag.title || tag.title.length ===0) {
             throw new Error("Title is required");
         }

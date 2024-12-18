@@ -34,7 +34,7 @@ export class Post {
         this.tags = post.tags
     };
 
-    validate(post: { postId?: number; title: string; pathToFile: string; favorites: number; }) {
+    validate(post: { id?: number; title: string; pathToFile: string; favorites: number; }) {
         if (!post.title || post.title.length === 0) {
             throw new Error("Title is required");
         }
