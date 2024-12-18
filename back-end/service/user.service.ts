@@ -1,15 +1,14 @@
-import { User } from "../model/user";
+import {User} from "../model/user";
 import userDb from "../repository/user.db";
-import { UserInput } from "../types";
+import {UserInput} from "../types";
 
-import { Profile } from '../model/profile';
-import { ProfileInput } from "../types";
+import {Profile} from '../model/profile';
 
 const getAllUsers = (): User[] => {
     return userDb.getAllUsers();
 };
 
-const createUser = async ({ userId, password, userName, profile }: UserInput, role: string): Promise<User> => {
+const createUser = async ({ id, password, userName, profile }: UserInput, role: string): Promise<User> => {
     if (role !== 'admin') {
         throw new Error('You are not authorized to add a user');
     }
@@ -27,7 +26,7 @@ const createUser = async ({ userId, password, userName, profile }: UserInput, ro
     }
 
     const validProfile = new Profile({
-        profileId: profile.profileId,
+        id: profile.id,
         email: profile.email ?? '',
         displayName: profile.displayName ?? '',
         theme: profile.theme ?? 'default',
@@ -35,17 +34,9 @@ const createUser = async ({ userId, password, userName, profile }: UserInput, ro
         fontSize: profile.fontSize ?? 14,
     });
 
-    const user = new User({
-        userId,
-        password,
-        userName,
-        profile: validProfile,
-    });
+    const user = new User({ id, password, username: userName, profile: validProfile, posts: [] });
 
-    const createdUser = await userDb.createUser(user);
-
-   
-    return createdUser;
+    return await userDb.createUser(user);
 };
 
 export default { getAllUsers, createUser };

@@ -2,13 +2,13 @@ import { Post } from '../model/post';
 
 const posts = [
     new Post({
-        postId: 1,
+        id: 1,
         title: 'First Post',
         pathToFile: '/path/to/file1.jpg',
         favorites: 5,
     }),
     new Post({
-        postId: 2,
+        id: 2,
         title: 'Second Post',
         pathToFile: '/path/to/file2.jpg',
         favorites: 3,

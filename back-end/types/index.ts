@@ -9,7 +9,7 @@ type PostInput = {
 
 
 type ProfileInput = {
-    profileId?: number;
+    id?: number;
     email?: string;
     displayName: string;
     theme: string;
@@ -18,13 +18,13 @@ type ProfileInput = {
 }
 
 type TagInput = {
-    tagId: number;
+    id: number;
     title: string;
     description: string;
 }
 
 type UserInput = {
-    userId?: number;
+    id?: number;
     password?: string;
     userName?: string;
     profile?: ProfileInput;

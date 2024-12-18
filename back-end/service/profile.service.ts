@@ -2,13 +2,13 @@ import profileDb from "../repository/profile.db";
 import { Profile } from '../model/profile';
 import { ProfileInput } from "../types";
 
-const createProfile =  ({ profileId, email, displayName, theme, creationDate, fontSize}: ProfileInput): Promise<Profile> => {
+const createProfile =  ({ id, email, displayName, theme, creationDate, fontSize}: ProfileInput): Promise<Profile> => {
 
     if (!email) {
         throw new Error('Email is required');
     }
 
-    const profile = new Profile({ profileId, email, displayName, theme, creationDate, fontSize });
+    const profile = new Profile({ id, email, displayName, theme, creationDate, fontSize });
     return profileDb.createProfile(profile);
 };
 

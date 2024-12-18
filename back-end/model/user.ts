@@ -14,7 +14,7 @@ export class User {
     private posts: Post[];
 
     constructor(user: {
-        id: number;
+        id?: number;
         password: string;
         username: string;
         profile: Profile;
@@ -29,7 +29,7 @@ export class User {
         this.posts = user.posts;
     };
 
-    validate(user: { id: number; password: string; username: string; profile: Profile }) {
+    validate(user: { id?: number; password: string; username: string; profile: Profile }) {
         if (!user.password || user.password.length < 6) {
             throw new Error ("Password is required and must be at least 6 characters long")
         }
@@ -43,23 +43,23 @@ export class User {
         }
     }
 
-    getId() {
+    getId(): number | undefined {
         return this.id;
     }
 
-    getPassword() {
+    getPassword(): string {
         return this.password;
     }
 
-    getUsername() {
+    getUsername(): string {
         return this.username;
     }
 
-    getProfile() {
+    getProfile(): Profile {
         return this.profile;
     }
 
-    getPosts() {
+    getPosts(): Post[] {
         return this.posts;
     }
 

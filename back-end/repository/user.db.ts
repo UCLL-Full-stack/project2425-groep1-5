@@ -2,7 +2,7 @@ import {Profile} from "../model/profile";
 import {User} from "../model/user";
 
 const profileRezan = new Profile({
-    profileId: 1,
+    id: 1,
     email: 'rezan@example.com',
     displayName: 'rez',
     theme: 'dark',
@@ -11,7 +11,7 @@ const profileRezan = new Profile({
 });
 
 const profileUser2 = new Profile({
-    profileId: 2,
+    id: 2,
     email: 'user2@example.com',
     displayName: 'User Two',
     theme: 'light',
@@ -21,15 +21,15 @@ const profileUser2 = new Profile({
 
 const users = [
     new User({
-        userId: 1,
+        id: 1,
         password: "password123",
-        userName: "rezrez",
+        username: "rezrez",
         profile: profileRezan
     }),
     new User({
-        userId: 2,
+        id: 2,
         password: "password456",
-        userName: "user2",
+        username: "user2",
         profile: profileUser2
     }),
 ];
@@ -42,7 +42,7 @@ const createUser = async (user: User): Promise<User> => {
 }
 
 const getUserById = ({ id }: { id: number }): User | null => {
-    return users.find((user) => user.getUserId() === id) || null;
+    return users.find((user) => user.getId() === id) || null;
 };
 
 export default {

@@ -3,7 +3,7 @@ import { Profile } from '../model/profile';
 
 const profiles = [
     new Profile({
-        profileId: 1,
+        id: 1,
         email: 'rezan@example.com',
         displayName: 'rez',
         theme: 'dark',
@@ -11,7 +11,7 @@ const profiles = [
         fontSize: 14,
     }),
     new Profile({
-        profileId: 2,
+        id: 2,
         email: 'user2@example.com',
         displayName: 'User Two',
         theme: 'light',

@@ -3,15 +3,15 @@ import { Comment } from '../model/comment';
 
 const comments: Comment[] = [
     new Comment({
-        commentId: 1,
+        id: 1,
         text: "Wow.",
     }),
     new Comment({
-        commentId: 2,
+        id: 2,
         text: "Nice second comment.",
     }),
     new Comment({
-        commentId: 3,
+        id: 3,
         text: "third comment.",
     }),
 ];

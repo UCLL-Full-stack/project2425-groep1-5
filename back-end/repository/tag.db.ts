@@ -2,12 +2,12 @@ import { Tag } from '../model/tag';
 
 const tags = [
     new Tag({
-        tagId: 1,
+        id: 1,
         title: 'First Post',
         description: '#october',
     }),
     new Tag({
-        tagId: 2,
+        id: 2,
         title: 'Second Post',
         description: '#fortnite',
     }),
