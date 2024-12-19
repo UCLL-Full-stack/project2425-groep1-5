@@ -24,13 +24,15 @@ const users = [
         id: 1,
         password: "password123",
         username: "rezrez",
-        profile: profileRezan
+        profile: profileRezan,
+        posts: []
     }),
     new User({
         id: 2,
         password: "password456",
         username: "user2",
-        profile: profileUser2
+        profile: profileUser2,
+        posts: []
     }),
 ];
 

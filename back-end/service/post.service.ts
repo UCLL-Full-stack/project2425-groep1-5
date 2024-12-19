@@ -1,6 +1,8 @@
 import postDb from "../repository/post.db";
 import { Post } from '../model/post';
 import { PostInput } from '../types';
+import {Comment} from "../model/comment";
+import {Tag} from "../model/tag";
 
 const getAllPosts = (): Post[] => {
     return postDb.getAllPosts();
@@ -11,7 +13,7 @@ const addPost = (postInput: PostInput): Post => {
         throw new Error('Title is required');
     }
 
-    return postDb.addPost(postInput as { postId: number; title: string; pathToFile: string; favorites: number });
+    return postDb.addPost(postInput as { postId: number; title: string; pathToFile: string; favorites: number; userId: number, comments: Comment[], tags: Tag[] });
 };
 
 export default { getAllPosts, addPost };

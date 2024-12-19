@@ -1,4 +1,6 @@
 import { Post } from '../model/post';
+import { Comment } from '../model/comment';
+import { Tag } from '../model/tag';
 
 const posts = [
     new Post({
@@ -6,16 +8,22 @@ const posts = [
         title: 'First Post',
         pathToFile: '/path/to/file1.jpg',
         favorites: 5,
+        userId: 1,
+        comments: [],
+        tags: []
     }),
     new Post({
         id: 2,
         title: 'Second Post',
         pathToFile: '/path/to/file2.jpg',
         favorites: 3,
+        userId: 2,
+        comments: [],
+        tags: []
     }),
 ];
 
-const addPost = (postInput: { postId: number; title: string; pathToFile: string; favorites: number; }): Post => {
+const addPost = (postInput: { postId: number; title: string; pathToFile: string; favorites: number; userId: number, comments: Comment[], tags: Tag[] }): Post => {
     
 
     const newPost = new Post(postInput);
