@@ -1,12 +1,14 @@
-type Role = 'admin' | 'guest' | 'user';
+type Role = 'admin' | 'superAdmin' | 'user';
 
 type PostInput = {
-    postId?: number;
+    id?: number;
     title?: string;
     pathToFile?: string;
     favorites?: number;
+    userId?: number;
+    comments?: CommentInput[];
+    tags?: TagInput[];
 };
-
 
 type ProfileInput = {
     id?: number;
@@ -28,9 +30,14 @@ type UserInput = {
     password?: string;
     userName?: string;
     profile?: ProfileInput;
+    posts?: PostInput;
 }
 
-
+type CommentInput = {
+    id?: number;
+    text: string;
+    postId?: number;
+}
 
 export {
     PostInput,
